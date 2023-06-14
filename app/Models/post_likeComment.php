@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class art_comment extends Model
+class post_likeComment extends Model
 {
     use HasFactory;
 }

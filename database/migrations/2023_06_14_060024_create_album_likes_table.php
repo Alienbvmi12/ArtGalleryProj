@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin_activity_histories', function (Blueprint $table) {
+        Schema::create('album_likes', function (Blueprint $table) {
             $table->id();
-            $table->string('activity');
-            $table->foreignId('user_id'); //Admin id
-            $table->string('content_type');
-            $table->integer('content_id');
+            $table->foreignId('album_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_activity_histories');
+        Schema::dropIfExists('album_likes');
     }
 };

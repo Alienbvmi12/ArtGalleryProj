@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('descriptions');
             $table->string('content_url');
             $table->string('type');
+            $table->integer('tags_token'); 
             $table->foreignId('user_id');
-            $table->integer('tags_token');
             $table->foreignId('album_id');
             $table->timestamps();
         });

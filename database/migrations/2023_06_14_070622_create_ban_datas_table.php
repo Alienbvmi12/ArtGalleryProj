@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_comments', function (Blueprint $table) {
+        Schema::create('ban_datas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id');
-            $table->text('comment');
+            $table->string('account_status');
+            $table->date('ban_until')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_comments');
+        Schema::dropIfExists('ban_datas');
     }
 };

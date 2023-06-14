@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('art_comments', function (Blueprint $table) {
+        Schema::create('art_like_comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('art_id');
-            $table->text('comment');
+            $table->foreignId('user_id');
+            $table->text('comment')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('art_comments');
+        Schema::dropIfExists('art_like_comments');
     }
 };

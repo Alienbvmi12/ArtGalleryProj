@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('subtitle');
             $table->string('cover_image');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('reason');
             $table->string('content_type');
             $table->integer('content_id');
+            $table->foreignId('user_id'); //User id who reporting
             $table->timestamps();
         });
     }
