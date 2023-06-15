@@ -19,11 +19,9 @@
     </div>
   @endif
 
-<form method="post">
+<form method="post" action="/login">
   <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
-
   @csrf
-
   <div class="form-floating">
     <input type="text" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
     <label for="floatingInput">Email</label>

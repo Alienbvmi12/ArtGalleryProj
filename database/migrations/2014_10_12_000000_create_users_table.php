@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('user_level');
             $table->foreignId('ban_data_id')->nullable();
+            $table->string("profile_photo");
             $table->rememberToken();
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,12 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function () {
-    return view('homepage');
-})->middleware('auth');
+    if(Auth::check()){
+        return view('homepage');
+    }else{
+        return view('landing');
+    }
+});
 
 Route::middleware('guest')->group(function(){
     Route::get('/login', [LoginController::class, 'loginView'])->name('login');
@@ -26,5 +31,7 @@ Route::middleware('guest')->group(function(){
     Route::post('/register', [RegisterController::class, 'register']);
 });
 
-
+Route::middleware('auth')->group(function(){
+    Route::post('/logout', [LoginController::class, 'logout']);
+});
 
