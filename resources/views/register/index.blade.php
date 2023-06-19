@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <span class="login100-form-title p-b-43">
-                        Login to continue
+                        Register to continue
                     </span>
 
                     @csrf
@@ -44,6 +44,12 @@
                         <span class="label-input100">Password</span>
                     </div>
 
+                    <div class="wrap-input100">
+                        <input class="input100" type="password" name="password_confirmation" required>
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Confirm Password</span>
+                    </div>
+
                     <div class="flex-sb-m w-full p-t-3 p-b-32">
                     </div>
 
@@ -52,7 +58,7 @@
                         <button class="login100-form-btn bg-success mb-1">
                             Submit
                         </button>
-                        <p>Already have account? <a href="/register">login</a></p>
+                        <p>Already have account? <a href="/login">login</a></p>
                     </div>
 
                     <div class="text-center p-t-46 p-b-20">
