@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid p-0 m-0">
         @yield('container')
     </div>
     @include("assets.js")

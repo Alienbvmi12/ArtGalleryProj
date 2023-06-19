@@ -17,21 +17,24 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    if(Auth::check()){
+    if (Auth::check()) {
         return view('homepage');
-    }else{
+    } else {
         return view('landing');
     }
 });
 
-Route::middleware('guest')->group(function(){
+Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'loginView'])->name('login');
     Route::get('/register', [RegisterController::class, 'registerView']);
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
+    Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('login_with_google');
+    Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+    Route::get('auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('login_with_facebook');
+    Route::get('auth/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout']);
 });
-

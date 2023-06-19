@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make("123"),
             'user_level' => 'admin',
-            'ban_data_id' => null,
+            'profile_photo' => null,
+            'google_id' => null,
+            'facebook_id' => null,
             'remember_token' => Str::random(10),
         ]);
         User::factory(10)->create();

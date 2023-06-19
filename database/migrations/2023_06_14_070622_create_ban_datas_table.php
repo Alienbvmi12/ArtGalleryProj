@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ban_datas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('account_status');
             $table->date('ban_until')->nullable();
             $table->timestamps();

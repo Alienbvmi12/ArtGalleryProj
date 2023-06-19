@@ -25,7 +25,9 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make("123"),
             'user_level' => 'user',
-            'ban_data_id' => null,
+            'profile_photo' => null,
+            'google_id' => null,
+            'facebook_id' => null,
             'remember_token' => Str::random(10),
         ];
     }

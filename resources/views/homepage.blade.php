@@ -8,12 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;1,300&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;1,300&family=Outfit:wght@300&display=swap"
         rel="stylesheet">
     <style>
         * {
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            transition: 1s;
         }
 
         .active {}
@@ -146,6 +149,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
+
+        #followed_button {
+            width: 2rem;
+            height: 20%;
+            background-color: white;
+            border-radius: 20px;
+
+        }
     </style>
 </head>
 
@@ -154,10 +165,10 @@
     <!--Navbar-->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="">
-        <div class="container">
-            <a class="navbar-brand" href="/"><b class="me-1" style="font-size : 25px">Lievmy</b><img
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><b class="ms-3" style="font-size : 25px">Lievmy</b><img
                     src="img/OriginalMinGi.png" width="20"></a>
-            <div class="ms-4">
+            <div class="ms-auto me-auto">
                 <form class="form">
                     <label for="search">
                         <input required="" autocomplete="off" placeholder="Search" id="search" type="text">
@@ -194,14 +205,15 @@
         </div>
     </nav>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <!--Info Sidebar-->
+    <div class="offcanvas offcanvas-end" style="width : 250px" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
             <span class="navbar-text">
                 <a class="nav-link" href="/profile">
-                    <img src="img/profile.jpeg" width="50px"
+                    <img src="@if(auth()->user()->profile_photo) {{auth()->user()->profile_photo}}  @else img/profile.jpeg @endif" width="50px"
                         style="border-radius : 10px; box-shadow : 0 1px 5px 0 rgba(0,0,0,0.4)" class="rounded-circle"
                         alt="profile">
-
                 </a>
             </span>
             <b style="font-size : 25px; color : black">{{ auth()->user()->username }}</b>
@@ -219,7 +231,8 @@
                         <li class="list-group-item">
                             <form method="post" action="/logout">
                                 @csrf
-                                <button type="submit" style="border : none; background : none; color : black">Logout</button>
+                                <button type="submit"
+                                    style="border : none; background : none; color : black">Logout</button>
                             </form>
                         </li>
                     </ul>
@@ -232,73 +245,131 @@
 
     <!--Content-->
 
-    <div class="card" style="width : 14rem; height : 60vh; position : fixed; z-index : 2; top : 200px;">
-        <b class="mt-3 mb-3" style="font-size : 20px; text-align : center">Followed Accounts</b>
-        <div class="card mb-2" style="width : 100%;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="https://picsum.photos/50/50?nocache={{ microtime() }}" class="img-fluid rounded-start"
-                        alt="...">
-                </div>
-                <div class="col-md-8 d-flex" style="align-items : center">
-                    <div>
-                        <label class="card-title mt-2">User123</label>
+    <div class="" id="followed"
+        style="width : 16rem; height : 60vh; position : fixed; z-index : 2; top : 200px;">
+        <table width="100%" height="100%">
+            <tr>
+                <td class="collapse collapse-horizontal" id="collapseWidthExample">
+                    <div class="card" style="width : 12rem; height : 100%; overflow : hidden">
+                        <b class="mt-3 mb-3" style="font-size : 20px; text-align : center">Followed Accounts</b>
+                        <div class="card mb-2" style="width : 100%;">
+                            <div class="g-0">
+                                <table style="width : 100%">
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <img src="https://picsum.photos/50/50?nocache={{ microtime() }}"
+                                                    class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex" style="align-items : center">
+                                                <div>
+                                                    <label class="card-title mt-2">User123</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-2" style="width : 100%;">
+                            <div class="g-0">
+                                <table style="width : 100%">
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <img src="https://picsum.photos/50/50?nocache={{ microtime() }}"
+                                                    class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex" style="align-items : center">
+                                                <div>
+                                                    <label class="card-title mt-2">Use_Vixing</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-2" style="width : 100%;">
+                            <div class="g-0">
+                                <table style="width : 100%">
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <img src="https://picsum.photos/50/50?nocache={{ microtime() }}"
+                                                    class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex" style="align-items : center">
+                                                <div>
+                                                    <label class="card-title mt-2">Alien_bvmi12</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-2" style="width : 100%;">
+                            <div class="g-0">
+                                <table style="width : 100%">
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <img src="https://picsum.photos/50/50?nocache={{ microtime() }}"
+                                                    class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex" style="align-items : center">
+                                                <div>
+                                                    <label class="card-title mt-2">Erpan1945</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-2" style="width : 100%;">
+                            <div class="g-0">
+                                <table style="width : 100%">
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <img src="https://picsum.photos/50/50?nocache={{ microtime() }}"
+                                                    class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex" style="align-items : center">
+                                                <div>
+                                                    <label class="card-title mt-2">Frost@Ruby</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2" style="width : 100%;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="https://picsum.photos/50/50?nocache={{ microtime() }}" class="img-fluid rounded-start"
-                        alt="...">
-                </div>
-                <div class="col-md-8 d-flex" style="align-items : center">
-                    <div>
-                        <label class="card-title mt-2">677SlenderGuy</label>
+                </td>
+                <td style="width : 4rem">
+                    <div class="card d-grid" style="place-items : center; cursor : pointer" id="followed_button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
+                        </svg>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2" style="width : 100%;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="https://picsum.photos/50/50?nocache={{ microtime() }}" class="img-fluid rounded-start"
-                        alt="...">
-                </div>
-                <div class="col-md-8 d-flex" style="align-items : center">
-                    <div>
-                        <label class="card-title mt-2">Roger_Masamuni</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2" style="width : 100%;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="https://picsum.photos/50/50?nocache={{ microtime() }}" class="img-fluid rounded-start"
-                        alt="...">
-                </div>
-                <div class="col-md-8 d-flex" style="align-items : center">
-                    <div>
-                        <label class="card-title mt-2">Naruto1945</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2" style="width : 100%;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="https://picsum.photos/50/50?nocache={{ microtime() }}" class="img-fluid rounded-start"
-                        alt="...">
-                </div>
-                <div class="col-md-8 d-flex" style="align-items : center">
-                    <div>
-                        <label class="card-title mt-2">0-ban</label>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="container">
@@ -319,8 +390,10 @@
                     $var4 = 1000 - $var1 - $var2 - $var3;
                     $reso = array($var1, $var2, $var3, $var4);
                     for($u = 0; $u < 4; $u++){?>
-                <img src="https://picsum.photos/250/250?nocache{{ microtime() }}" style="width : 250px;"
-                    class="col-sm-3" alt="">
+                <div style="width : 250px; height : 250px;  overflow : hidden;" class="col-sm-3" alt="">
+                    <img src="https://picsum.photos/{{ rand(200, 600) }}/{{ rand(200, 600) }}?nocache{{ microtime() }}"
+                        onload="resize(this)">
+                </div>
                 <?php
                     } 
                     echo "</div>";
@@ -334,6 +407,38 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
 
-<script></script>
+<script>
+    function resize(element) {
+        let image = element;
+        // Check the dimensions of the image
+        image.addEventListener("load", function() {
+            const {
+                naturalWidth,
+                naturalHeight
+            } = image;
+
+            // Compare the dimensions to determine how to resize the image
+            if (naturalHeight > naturalWidth) {
+                image.style.width = "100%";
+                image.style.height = "auto";
+            } else if (naturalHeight < naturalWidth) {
+                image.style.width = "auto";
+                image.style.height = "100%";
+            }
+        });
+
+    }
+
+    function dispose() {
+        const element = document.getElementById("folcom");
+        if (element.style.width == "12rem") {
+            element.style.width = "0";
+        } else {
+            element.style.width = "12rem";
+        }
+    }
+
+    document.getElementById("followed_button").click();
+</script>
 
 </html>
