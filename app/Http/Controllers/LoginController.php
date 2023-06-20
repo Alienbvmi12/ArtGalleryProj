@@ -27,7 +27,9 @@ class LoginController extends Controller
             'password' => ''
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attemptWhen($credentials, function(User $user){
+            return isset($user->email_verified_at);
+        })) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
@@ -96,14 +98,14 @@ class LoginController extends Controller
     public function redirectToFacebook()
     {
 
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->stateless()->redirect();
     }
 
     public function handleFacebookCallback()
     {/*  */
         date_default_timezone_set('Asia/Jakarta');
 
-        $user = Socialite::driver('facebook')->user();
+        $user = Socialite::driver('facebook')->stateless()->user();
 
         $finduser = User::where('facebook_id', $user->id)->first();
 

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,11 +30,15 @@ class RegisterController extends Controller
         $validatedData['user_level'] = 'user';
         $validatedData['ban_data_id'] = null;
 
-        User::create($validatedData);
+        $user = User::create($validatedData);
+
+        Auth::login($user);
+
+        event(new Registered($user));
 
         $request->session()->flash('success', 'Berhasil register!! silahkan login');
 
-        return redirect('/login');
+        return redirect(route('verification.notice'));
 
     }
 }

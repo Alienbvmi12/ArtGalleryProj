@@ -48,7 +48,7 @@
                         </div>
 
                         <div>
-                            <a href="#" class="txt1">
+                            <a href="{{route('password.request')}}" class="txt1">
                                 Forgot Password?
                             </a>
                         </div>
@@ -90,16 +90,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function showPassword() {
-            const inType = document.querySelector("#floatingPassword").type
-            if (inType === 'text') {
-                document.querySelector("#floatingPassword").type = "password"
-            } else {
-                document.querySelector("#floatingPassword").type = "text"
-            }
-        }
-    </script>
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="js/main.js"></script>
 @endsection
