@@ -50,6 +50,8 @@
                         <span class="label-input100">Confirm Password</span>
                     </div>
 
+                    <div class="g-recaptcha" data-sitekey="6LfJB7MmAAAAAMp6z8x3tw3u6ANRgRZU8UXJUv79"></div>
+
                     <div class="flex-sb-m w-full p-t-3 p-b-32">
                     </div>
 
@@ -91,4 +93,5 @@
     </div>
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @endsection

@@ -22,7 +22,12 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|max:255|email:dns|unique:users,email',
             'username' => 'required|max:255|min:3|unique:users,username',
-            'password' => 'required|max:255|confirmed'
+            'password' => 'required|max:255|confirmed',
+            'g-recaptcha-response' => 'required|recaptcha'
+        ],
+        [
+            'g-recaptcha-response.required' => 'Please complete the ReCaptcha',
+            'g-recaptcha-response.recaptcha' => 'Captcha verification failed',
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);

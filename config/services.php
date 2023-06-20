@@ -43,4 +43,9 @@ return [
         'redirect' => env('FACEBOOK_CLIENT_REDIRECT'),
     ],
 
+    'recaptcha' => [
+        'key' => env('RECAPTCHA_SITE_KEY'),
+        'secret' => env('RECAPTCHA_SECRET_KEY'),
+    ],
+
 ];
