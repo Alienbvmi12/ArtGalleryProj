@@ -120,10 +120,10 @@
         <div class="wrapper">
             <div class="hero-text">
                 <div class="hero-text-header">
-                    <b>Lievmy A<text style="color : black;">rt Gallery</text></b>
+                    <b style="text-shadow : 1px 1px 5px rgba(0,0,0,0.5)">Lievmy A<text style="color : black; text-shadow : 1px 1px 5px rgba(255,255,255,0.5)">rt Gallery</text></b>
                 </div>
                 <div class="hero-text-body">
-                    <text style="color : black">Expand artist potentials to</text> limitles, draw, write, and sing
+                    <text style="color : black; text-shadow : 1px 1px 5px rgba(255,255,255,0.5)">Expand artist potentials to</text style="text-shadow : 1px 1px 5px rgba(0,0,0,0.5)"> limitles, draw, write, and sing
                 </div>
             </div>
         </div>

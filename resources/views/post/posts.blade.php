@@ -136,12 +136,12 @@
     <div class="container">
         <br>
         <br>
-        <h3><b>Recomended Arts For You</b></h3>
+        <h3><b>Recomended Blogs For You</b></h3>
     </div>
 
     <div class="container pt-4">
         <div class="row">
-            
+
             <!--Art Nav-->
 
             <div class="col-sm-1 d-flex pt-3 content-menu">
@@ -171,17 +171,24 @@
             <!--displayer-->
 
             <div class="card col-sm-11" id="y">
-                <div class="card-body rowa">
-                    <?php 
-                    for($i = 0; $i < 4; $i++){
-                        echo "<div class='columna'>";
-                        for($u = 0; $u < 7; $u++){?>
-                    <img src="@if(mt_rand(0, 1)) https://picsum.photos/{{ rand(300, 1000) }}/{{ rand(300, 1000) }}?nocache{{ microtime() }} @else http://127.0.0.1:8000/image/anime?nocache={{ microtime()}} @endif"
-                        style="width : 100%">
-                    <?php
-                        } 
-                        echo "</div>";
-                    }?>
+                <div class="card-body row">
+                    @foreach ($posts as $post)
+                        <div class="col-sm-6">
+                            <div class="card mb-3" style="width:100%">
+                                <div style="overflow : hidden; height : 200px">
+                                    <img src="{{ $post->cover_image }}" style="object-fit: cover" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <p class="card-text" style="height : 100px; overflow : hidden">{!! $post->excerpt !!}</p>
+                                    <a href="/post/{{ $post->slug }}" class="">Read more...</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="card-foot">
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>

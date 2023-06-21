@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('content_tags', function (Blueprint $table) {
+        Schema::create('art_tags', function (Blueprint $table) {
             $table->id();
             $table->foreignId('art_id');
             $table->foreignId('tag_id');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('content_tags');
+        Schema::dropIfExists('art_tags');
     }
 };

@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('title');
-            $table->text('descriptions');
+            $table->string('cover_image')->nullable();
             $table->string('content_url');
+            $table->text('descriptions');
             $table->string('type');
             $table->foreignId('user_id');
             $table->foreignId('album_id');

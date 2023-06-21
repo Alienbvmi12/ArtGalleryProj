@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class post_comment extends Model
+class Post_comment extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id'
+    ];
 }

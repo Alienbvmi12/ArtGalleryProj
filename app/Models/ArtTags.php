@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class content_tags extends Model
+class ArtTags extends Model
 {
     use HasFactory;
 }

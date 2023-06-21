@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
+            $table->string('cover_image')->nullable();
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
-            $table->integer('tags_token');
             $table->foreignId('user_id');
             $table->foreignId('album_id');
             $table->timestamps();

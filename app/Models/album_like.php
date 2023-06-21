@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class album_like extends Model
+class Album_like extends Model
 {
     use HasFactory;
+    
+    protected $guarded = [
+        'id'
+    ];
 }

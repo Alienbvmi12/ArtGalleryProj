@@ -1,11 +1,15 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OauthController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Auth\Notifications\ResetPassword;
 use App\Http\Controllers\ResetPasswordController;
+use GuzzleHttp\Client;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -22,11 +26,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/', function () {
     if (Auth::check() && isset(auth()->user()->email_verified_at)) {
         return view('homepage');
-    } 
-    elseif(Auth::check() && !isset(auth()->user()->email_verified_at)){
+    } elseif (Auth::check() && !isset(auth()->user()->email_verified_at)) {
         return redirect(route('verification.notice'));
-    }
-    else {
+    } else {
         return view('landing');
     }
 });
@@ -40,12 +42,12 @@ Route::middleware('guest')->group(function () {
 
     //login with google
 
-    Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('login_with_google');
-    Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+    Route::get('auth/google', [OauthController::class, 'redirectToGoogle'])->name('login_with_google');
+    Route::get('auth/google/callback', [OauthController::class, 'handleGoogleCallback']);
 
     //login with facebook
 
-    Route::get('auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('login_with_facebook');
+    Route::get('auth/facebook', [OauthController::class, 'redirectToFacebook'])->name('login_with_facebook');
 
     //Lupa password
 
@@ -60,7 +62,28 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
+
+    // Logout
+
     Route::post('/logout', [LoginController::class, 'logout']);
+
+    // Posts
+
+    Route::get('/posts', [PostController::class, 'all']);
+
+    // Gambar Anime random
+
+    Route::get('/image/anime', function(){
+        $client = new Client();
+        $request = $client->get('https://kyoko.rei.my.id/api/sfw.php?r=1');
+        $body = json_decode((string)$request->getBody());
+        return redirect($body->apiResult->url[0]);
+    });   
+    
+    // View Profile
+
+    Route::get('/profile/{user:username}', [ProfileController::class, 'profile']);
+
 });
 
 //Konfirmasi email
@@ -75,4 +98,10 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('auth/facebook/callback', [LoginController::class, 'handleFacebookCallback'])->middleware('http');
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('auth/facebook/callback', [OauthController::class, 'handleFacebookCallback'])->middleware('http');
