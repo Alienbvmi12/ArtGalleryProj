@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             'profile_photo' => null,
             'google_id' => null,
             'facebook_id' => null,
+            'github_id' => null,
+            'gitlab_id' => null,
             'remember_token' => Str::random(10),
         ]);
         User::factory(10)->create();

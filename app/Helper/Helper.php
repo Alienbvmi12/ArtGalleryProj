@@ -34,4 +34,17 @@ class Helper
 
         return $slug;
     }
+
+    public static function ifCredEmp($user)
+    {
+        if(!isset($user->nickname)){
+            $user->nickname = fake()->userName;
+        }
+
+        if(!isset($user->name)){
+            $user->nickname = fake()->name;
+        }
+
+        return $user;
+    }
 }

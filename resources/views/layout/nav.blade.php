@@ -273,7 +273,7 @@
             <div class="d-flex" style="flex-direction : column; -flex-direction : column;">
                 <ul class="list-group">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Your Profile</li>
+                        <li class="list-group-item"><a href="/profile/{{auth()->user()->username}}">Your Profile</a></li>
                         <li class="list-group-item">Create Content</li>
                         <li class="list-group-item">Liked Contents</li>
                         <li class="list-group-item">People You Follow</li>

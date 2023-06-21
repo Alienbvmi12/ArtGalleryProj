@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('profile_photo')->nullable();
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
+            $table->string('github_id')->nullable();
+            $table->string('gitlab_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
