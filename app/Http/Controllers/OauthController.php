@@ -14,19 +14,19 @@ use Illuminate\Support\Facades\Config;
 
 class OauthController extends Controller
 {
-    public function redirectToGoogle()
+    public function redirectToProvider($app)
     {
 
-        return Socialite::driver('google')->stateless()->redirect();
+        return Socialite::driver($app)->redirect();
     }
 
-    public function handleGoogleCallback()
+    public function handleCallback($app)
     {/*  */
         date_default_timezone_set('Asia/Jakarta');
 
-        $user = Socialite::driver('google')->stateless()->user();
+        $user = Socialite::driver($app)->stateless()->user();
 
-        $finduser = User::where('google_id', $user->id)->first();
+        $finduser = User::where($app.'_id', $user->id)->first();
 
         if ($finduser) {
 
@@ -48,161 +48,11 @@ class OauthController extends Controller
 
                 'name' => $user->name,
                 'username' => $user->nickname,
-                'email' => $user->email,
+                'email' => $app.'user'.date('ymdHis', $timestamp).Helper::generateRandomString(2).'@email.com',
                 'password' => Hash::make(Helper::generateRandomString()),
                 'user_level' => 'user',
                 'profile_photo' => $user->avatar,
-                'google_id' => $user->id,
-                'facebook_id' => null,
-                'remember_token' => Helper::generateRandomString(),
-                'email_verified_at' => $formattedDateTime
-            ]);
-
-            Auth::login($newUser);
-
-            return redirect()->back();
-        }
-    }
-    public function redirectToFacebook()
-    {
-
-        return Socialite::driver('facebook')->stateless()->redirect();
-    }
-
-    public function handleFacebookCallback()
-    {/*  */
-        date_default_timezone_set('Asia/Jakarta');
-
-        $user = Socialite::driver('facebook')->stateless()->user();
-
-        $finduser = User::where('facebook_id', $user->id)->first();
-
-        if ($finduser) {
-
-            Auth::login($finduser);
-
-            return redirect()->intended('/');
-
-        } else {
-
-            $timestamp = time();
-            $formattedDateTime = date('Y-m-d H:i:s', $timestamp);
-            $formattedDateTime; 
-
-            var_dump($user->token);
-
-            $user = Helper::ifCredEmp($user);
-
-            $newUser = User::create([
-
-                'name' => $user->name,
-                'username' => $user->nickname,
-                'email' => $user->email,
-                'password' => Hash::make(Helper::generateRandomString()),
-                'user_level' => 'user',
-                'profile_photo' => $user->avatar,
-                'google_id' => null,
-                'facebook_id' => $user->id,
-                'remember_token' => Helper::generateRandomString(),
-                'email_verified_at' => $formattedDateTime
-            ]);
-
-            Auth::login($newUser);
-
-            return redirect()->back();
-        }
-    }
-
-    public function redirectToGithub()
-    {
-        return Socialite::driver('github')->stateless()->redirect();
-    }
-
-    public function handleGithubCallback()
-    {/*  */
-        date_default_timezone_set('Asia/Jakarta');
-
-        $user = Socialite::driver('github')->stateless()->user();
-
-        $finduser = User::where('github_id', $user->id)->first();
-
-        if ($finduser) {
-
-            Auth::login($finduser);
-
-            return redirect()->intended('/');
-
-        } else {
-
-            $timestamp = time();
-            $formattedDateTime = date('Y-m-d H:i:s', $timestamp);
-            $formattedDateTime; 
-
-            var_dump($user->token);
-
-            $user = Helper::ifCredEmp($user);
-
-            $newUser = User::create([
-
-                'name' => $user->name,
-                'username' => $user->nickname,
-                'email' => $user->email,
-                'password' => Hash::make(Helper::generateRandomString()),
-                'user_level' => 'user',
-                'profile_photo' => $user->avatar,
-                'google_id' => null,
-                'facebook_id' => null,
-                'github_id' => $user->id,
-                'remember_token' => Helper::generateRandomString(),
-                'email_verified_at' => $formattedDateTime
-            ]);
-
-            Auth::login($newUser);
-
-            return redirect()->back();
-        }
-    }
-    public function redirectToGitlab()
-    {
-        return Socialite::driver('gitlab')->stateless()->redirect();
-    }
-
-    public function handleGitlabCallback()
-    {/*  */
-        date_default_timezone_set('Asia/Jakarta');
-
-        $user = Socialite::driver('gitlab')->stateless()->user();
-
-        $finduser = User::where('gitlab_id', $user->id)->first();
-
-        if ($finduser) {
-
-            Auth::login($finduser);
-
-            return redirect()->intended('/');
-
-        } else {
-
-            $timestamp = time();
-            $formattedDateTime = date('Y-m-d H:i:s', $timestamp);
-            $formattedDateTime; 
-
-            var_dump($user->token);
-
-            $user = Helper::ifCredEmp($user);
-
-            $newUser = User::create([
-
-                'name' => $user->name,
-                'username' => $user->nickname,
-                'email' => $user->email,
-                'password' => Hash::make(Helper::generateRandomString()),
-                'user_level' => 'user',
-                'profile_photo' => $user->avatar,
-                'google_id' => null,
-                'facebook_id' => null,
-                'github_id' => null,
-                'gitlab_id' => $user->id,
+                $app.'_id' => $user->id,
                 'remember_token' => Helper::generateRandomString(),
                 'email_verified_at' => $formattedDateTime
             ]);

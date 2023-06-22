@@ -1,0 +1,19 @@
+.profile-page-wrapper{
+    width : 100%;
+}
+.profile-head{
+    width : 100%;
+    height : 60vh;
+    align-items: center; 
+    overflow : hidden;
+    background-size: 100%;
+}
+
+.navlink{
+    color : white
+}
+
+
+.navbar-nav{
+    display : flex
+}

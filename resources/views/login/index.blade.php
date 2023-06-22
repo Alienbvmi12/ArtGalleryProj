@@ -69,28 +69,30 @@
                     </div>
 
                     <div class="login100-form-social flex-c-m">
-                        <a href="{{ route('login_with_google') }}" class="login100-form-social-item flex-c-m bg-light m-r-5"
+                        <a href="/auth/google" class="login100-form-social-item flex-c-m bg-light m-r-5"
                             style="box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.1)">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                                 width="20" height="20">
-
                         </a>
 
-                        <a href="{{ route('login_with_facebook') }}"
-                            style="text-decoration: none; box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.2)"
+                        <a href="{{url('auth/facebook')}}" style="text-decoration: none; box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.2)"
                             class="login100-form-social-item flex-c-m bg1 m-r-5">
                             <i class="fa fa-facebook" aria-hidden="true"></i>
                         </a>
 
-                        <a href="{{ route('login_with_github') }}"
-                            style="text-decoration: none; box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.2)"
+                        <a href="/auth/twitter" style="text-decoration: none; box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.2)"
+                            class="login100-form-social-item flex-c-m bg-info m-r-5">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="/auth/github" style="text-decoration: none; box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.2)"
                             class="login100-form-social-item flex-c-m bg-dark m-r-5">
                             <i class="fa fa-github" aria-hidden="true"></i>
                         </a>
 
-                        <a href="{{ route('login_with_gitlab') }}"
-                            style="text-decoration: none; box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.2)"
-                            class="login100-form-social-item flex-c-m bg-warning m-r-5">
+                        <a href="/auth/gitlab"
+                            style="text-decoration: none; box-shadow : 0 0 10px 0.5px rgba(0,0,0,0.2); background-color : orange;"
+                            class="login100-form-social-item flex-c-m m-r-5">
                             <img src="https://i0.wp.com/leeno.org/wp-content/uploads/2018/06/GitLab_Logo.svg_.png?fit=960%2C887&ssl=1"
                                 width="20" height="20">
                         </a>

@@ -18,12 +18,42 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Raleway:wght@300&display=swap"
         rel="stylesheet">
+    <link href="../css/style2.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
+        type="text/css" />
+    {{-- <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
     <style>
         * {
             font-family: 'Montserrat', sans-serif;
         }
 
-        .active {}
+        /* Styles for the search field */
+        .search-field {
+            margin-bottom: 10px;
+        }
+
+        /* Styles for the select dropdown */
+        .custom-select {
+            position: relative;
+        }
+
+        .custom-select select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
 
         /* From uiverse.io by @satyamchaudharydev */
         /* this button is inspired by -- whatsapp input */
@@ -195,103 +225,106 @@
         }
 
         @media screen and (max-width: 575px) {
-            .content-menu{
-                flex-direction : row;
+            .content-menu {
+                flex-direction: row;
                 justify-content: center;
             }
         }
 
         @media screen and (max-width: 404px) {
-            .titel{
-                display : none;
+            .titel {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
+    <!--style="background-color : rgba(25,25,25,1)"-->
 
-    <!--Navbar-->
+        <!--Navbar-->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/"><b class="ms-3 titel"
-                    style="font-size : 25px; font-family: 'Josefin Sans', sans-serif;">Lievmy</b><img
-                    src="img/OriginalMinGi.png" width="20"></a>
-            <div class="ms-auto me-auto">
-                <form class="form">
-                    <label for="search">
-                        <input required="" autocomplete="off" placeholder="Search" id="search" type="text">
-                        <div class="icon">
-                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" class="swap-on">
-                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round"
-                                    stroke-linecap="round"></path>
-                            </svg>
-                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" class="swap-off">
-                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round">
-                                </path>
-                            </svg>
-                        </div>
-                        <button type="reset" class="close-btn">
-                            <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
-                                <path clip-rule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    fill-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </label>
-                </form>
-            </div>
-            <a class="nav-link text-white" style="cursor:pointer" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                    <path
-                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                </svg>
-            </a>
-        </div>
-    </nav>
-
-    <!--Info Sidebar-->
-    <div class="offcanvas offcanvas-end" style="width : 250px" tabindex="-1" id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <span class="navbar-text">
-                <a class="nav-link" href="/profile">
-                    <img src="@if (auth()->user()->profile_photo) {{ auth()->user()->profile_photo }}  @else img/profile.jpeg @endif"
-                        width="50px" style="border-radius : 10px; box-shadow : 0 1px 5px 0 rgba(0,0,0,0.4)"
-                        class="rounded-circle" alt="profile">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><b class="ms-3 titel"
+                        style="font-size : 25px; font-family: 'Josefin Sans', sans-serif;">Lievmy</b><img
+                        src="../img/OriginalMinGi.png" width="20"></a>
+                <div class="ms-auto me-auto">
+                    <form class="form">
+                        <label for="search">
+                            <input required="" autocomplete="off" placeholder="Search" id="search" type="text">
+                            <div class="icon">
+                                <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="swap-on">
+                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round"
+                                        stroke-linecap="round"></path>
+                                </svg>
+                                <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="swap-off">
+                                    <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round"
+                                        stroke-linecap="round">
+                                    </path>
+                                </svg>
+                            </div>
+                            <button type="reset" class="close-btn">
+                                <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </label>
+                    </form>
+                </div>
+                <a class="nav-link text-white" style="cursor:pointer" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                        <path
+                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    </svg>
                 </a>
-            </span>
-            <b style="font-size : 25px; color : black">{{ auth()->user()->username }}</b>
-            <div></div>
-        </div>
-        <div class="offcanvas-body">
-            <div class="d-flex" style="flex-direction : column; -flex-direction : column;">
-                <ul class="list-group">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="/profile/{{auth()->user()->username}}">Your Profile</a></li>
-                        <li class="list-group-item">Create Content</li>
-                        <li class="list-group-item">Liked Contents</li>
-                        <li class="list-group-item">People You Follow</li>
-                        <li class="list-group-item">Your Gallery</li>
-                        <li class="list-group-item">
-                            <form method="post" action="/logout">
-                                @csrf
-                                <button type="submit"
-                                    style="border : none; background : none; color : black">Logout</button>
-                            </form>
-                        </li>
+            </div>
+        </nav>
+
+        <!--Info Sidebar-->
+        <div class="offcanvas offcanvas-end" style="width : 250px" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <span class="navbar-text">
+                    <a class="nav-link" href="/profile">
+                        <img src="@if (auth()->user()->profile_photo) {{ auth()->user()->profile_photo }}  @else img/profile.jpeg @endif"
+                            width="50px" style="border-radius : 10px; box-shadow : 0 1px 5px 0 rgba(0,0,0,0.4)"
+                            class="rounded-circle" alt="profile">
+                    </a>
+                </span>
+                <b style="font-size : 25px; color : black">{{ auth()->user()->username }}</b>
+                <div></div>
+            </div>
+            <div class="offcanvas-body">
+                <div class="d-flex" style="flex-direction : column; -flex-direction : column;">
+                    <ul class="list-group">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="/profile/{{ auth()->user()->username }}">Your
+                                    Profile</a></li>
+                            <li class="list-group-item">Create Content</li>
+                            <li class="list-group-item">Liked Contents</li>
+                            <li class="list-group-item">People You Follow</li>
+                            <li class="list-group-item">Your Gallery</li>
+                            <li class="list-group-item">
+                                <form method="post" action="/logout">
+                                    @csrf
+                                    <button type="submit"
+                                        style="border : none; background : none; color : black">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
                     </ul>
-                </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    @yield('container')
+        @yield('container')
 
 </body>
 

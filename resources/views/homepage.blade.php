@@ -176,7 +176,7 @@
                     for($i = 0; $i < 4; $i++){
                         echo "<div class='columna'>";
                         for($u = 0; $u < 7; $u++){?>
-                    <img src="@if(mt_rand(0, 1)) https://picsum.photos/{{ rand(300, 1000) }}/{{ rand(300, 1000) }}?nocache{{ microtime() }} @else http://127.0.0.1:8000/image/anime?nocache={{ microtime()}} @endif"
+                    <img src="https://picsum.photos/{{ rand(300, 1000) }}/{{ rand(300, 1000) }}?nocache{{ microtime() }}"
                         style="width : 100%">
                     <?php
                         } 

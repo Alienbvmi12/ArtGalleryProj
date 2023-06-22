@@ -41,37 +41,22 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
 
-    //login with google
+    //oauth
 
-    Route::get('auth/google', [OauthController::class, 'redirectToGoogle'])->name('login_with_google');
-    Route::get('auth/google/callback', [OauthController::class, 'handleGoogleCallback']);
-
-    //login with facebook
-
-    Route::get('auth/facebook', [OauthController::class, 'redirectToFacebook'])->name('login_with_facebook');
-    Route::get('auth/facebook/callback', [OauthController::class, 'handleFacebookCallback']);
-
-    //login with github
-
-    Route::get('auth/github', [OauthController::class, 'redirectToGithub'])->name('login_with_github');
-    Route::get('auth/github/callback', [OauthController::class, 'handleGithubCallback']);
-
-    //login with gitlab
-
-    Route::get('auth/gitlab', [OauthController::class, 'redirectToGitlab'])->name('login_with_gitlab');
-    Route::get('auth/gitlab/callback', [OauthController::class, 'handleGitlabCallback']);
+    Route::get('auth/{app}', [OauthController::class, 'redirectToProvider']);
+    Route::get('auth/{app}/callback', [OauthController::class, 'handleCallback']);
 
     //Lupa password
 
     Route::get('/forgot-password', [ResetPasswordController::class, 'forgot_password_view'])->name('password.request');
     Route::post('/forgot-password', [ResetPasswordController::class, 'send_reset_token'])->name('password.email');
 
-    //Reset Password
-
-    Route::get('/reset-password', [ResetPasswordController::class, 'reset_password_view'])->name('password.reset');
-    Route::post('/reset-password', [ResetPasswordController::class, 'send_reset_password'])->name('password.update');
 });
 
+//Reset Password
+
+Route::get('/reset-password', [ResetPasswordController::class, 'reset_password_view'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'send_reset_password'])->name('password.update');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -85,17 +70,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Gambar Anime random
 
-    Route::get('/image/anime', function(){
+    Route::get('/image/anime', function () {
         $client = new Client();
-        $request = $client->get('https://kyoko.rei.my.id/api/index.php?r=1');
+        $request = $client->get('https://kyoko.rei.my.id/api/dance.php?r=1');
         $body = json_decode((string)$request->getBody());
         return redirect($body->apiResult->url[0]);
-    });   
-    
+    })->name('anime');
+
     // View Profile
 
     Route::get('/profile/{user:username}', [ProfileController::class, 'profile']);
-
 });
 
 //Konfirmasi email
@@ -115,4 +99,3 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
