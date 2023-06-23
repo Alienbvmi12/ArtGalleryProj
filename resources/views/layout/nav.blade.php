@@ -31,6 +31,9 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
     <style>
         * {
             font-family: 'Montserrat', sans-serif;
@@ -214,6 +217,24 @@
         .content-menu {
             flex-direction: column;
             align-items: center;
+        }
+
+        .album-cover-title {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            display: flex;
+            align-items: flex-end;
+            filter: opacity(0);
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .album-cover:hover>.album-cover-title {
+            filter: opacity(1);
         }
 
         /* Responsive layout - makes a two column-layout instead of four columns */

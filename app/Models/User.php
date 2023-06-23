@@ -53,4 +53,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Album::class);
     }
 
+    public function biodata(){
+        return $this->hasOne(Biodata::class);
+    }
+
 }

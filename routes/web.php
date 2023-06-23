@@ -9,6 +9,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OauthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\PostResourceController;
 use Illuminate\Auth\Notifications\ResetPassword;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -66,7 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Posts
 
-    Route::get('/posts', [PostController::class, 'all']);
+    Route::resource('/post', PostResourceController::class);
 
     // Gambar Anime random
 
@@ -77,9 +79,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return redirect($body->apiResult->url[0]);
     })->name('anime');
 
-    // View Profile
+    // Profile
 
-    Route::get('/profile/{user:username}', [ProfileController::class, 'profile']);
+    Route::get('/profile/{user:username}', [UserProfileController::class, 'show']);
+    Route::put('/profile/{biodata}', [UserProfileController::class, 'update']);
 });
 
 //Konfirmasi email

@@ -46,7 +46,6 @@ class OauthController extends Controller
 
             $newUser = User::create([
 
-                'name' => $user->name,
                 'username' => $user->nickname,
                 'email' => $app.'user'.date('ymdHis', $timestamp).Helper::generateRandomString(2).'@email.com',
                 'password' => Hash::make(Helper::generateRandomString()),

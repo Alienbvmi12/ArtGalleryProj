@@ -156,7 +156,7 @@
                     </a>
                 </div>
                 <div class="m-3" data-bs-toggle="tooltip" data-bs-placement="right" title="Blogposts">
-                    <a href="/posts" class="text-dark">
+                    <a href="/post" class="text-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                             class="bi bi-layout-text-window-reverse" viewBox="0 0 16 16">
                             <path
