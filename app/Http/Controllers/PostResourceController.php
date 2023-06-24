@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Helper\Helper;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PostResourceController extends Controller
 {
@@ -44,7 +46,7 @@ class PostResourceController extends Controller
 
         $validatedData['slug'] = Helper::generateSlug($validatedData['title']);
         $validatedData['excerpt'] = Helper::generateExcerpt($validatedData['body'], 50);
-        
+
         $imgPath = $request->file('cover_image')->store('post-covers');
 
         $validatedData['cover_image'] = $imgPath;
@@ -60,7 +62,10 @@ class PostResourceController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('post.detail', [
+            'post' => $post,
+            'title' => 'Post by ' . $post->author->username,
+        ]);
     }
 
     /**
@@ -84,6 +89,10 @@ class PostResourceController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $deletedPost = Post::where('id', $post->id)->delete();
+        return redirect('/profile/' . auth()->user()->username . '?section=posts');
+        if (File::exists('app/public/'.$deletedPost->cover_image)) {
+            Storage::delete('app/public/'.$deletedPost->cover_image);
+        }
     }
 }

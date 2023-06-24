@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -214,6 +215,25 @@
             width: 100%;
         }
 
+        .rowi {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Adjust the number of columns as needed */
+            grid-gap: 10px;
+        }
+
+        /* Create four equal columns that sits next to each other */
+        .columni {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .columni img {
+            max-width: 100%;
+            height: auto;
+        }
+
         .content-menu {
             flex-direction: column;
             align-items: center;
@@ -228,6 +248,7 @@
             text-align: center;
             display: flex;
             align-items: flex-end;
+            justify-content: center;
             filter: opacity(0);
             transition: 0.5s;
             cursor: pointer;
@@ -346,6 +367,38 @@
         </div>
 
         @yield('container')
+
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="col-lg-6 h-100 text-center text-lg-start">
+                        <ul class="list-inline mb-3 mt-1">
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4">&copy; Your Website 2023. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="#!" class="text-primary"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!" class="text-info"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!" class="text-danger"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
 </body>
 

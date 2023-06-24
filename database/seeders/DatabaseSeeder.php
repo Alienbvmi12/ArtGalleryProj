@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 1; $i < 12; $i++) {
             Album::create([
-                'title' => fake()->sentence(mt_rand(2, 8)),
+                'title' => 'Main',
                 'subtitle' => fake()->paragraph(),
                 'cover_image' => 'https://picsum.photos/' . rand(300, 1000) . '/' . rand(300, 1000) . '?nocache=' . microtime(),
                 'privacy' => 'public',

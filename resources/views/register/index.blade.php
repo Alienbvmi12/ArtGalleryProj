@@ -20,12 +20,6 @@
                     @csrf
 
                     <div class="wrap-input100">
-                        <input class="input100" type="text" name="name" required>
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Name</span>
-                    </div>
-
-                    <div class="wrap-input100">
                         <input class="input100" type="text" name="email" required>
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email <Address></Address></span>

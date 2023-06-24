@@ -12,4 +12,19 @@ class Art extends Model
     protected $guarded = [
         'id'
     ];
+
+    protected $with = [
+        'author',
+        'album'
+    ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function album()
+    {
+        return $this->belongsTo(Album::class, 'album_id');
+    }
 }

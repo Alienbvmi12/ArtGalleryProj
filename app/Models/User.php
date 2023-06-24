@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Art;
 use App\Models\Post;
 use App\Models\Album;
+use App\Models\Biodata;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -47,6 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function posts(){
         return $this->hasMany(Post::class);
+    }
+
+    public function arts(){
+        return $this->hasMany(Art::class);
     }
 
     public function albums(){

@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OauthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ArtResourceController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PostResourceController;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -69,6 +70,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Posts
 
     Route::resource('/post', PostResourceController::class);
+    Route::get('/post/{post:slug}', [PostResourceController::class, 'show']);
+
+    //Arts
+
+    Route::resource('/art', ArtResourceController::class);
 
     // Gambar Anime random
 

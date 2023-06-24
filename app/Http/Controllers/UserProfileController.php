@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Art;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Album;
@@ -52,21 +53,24 @@ class UserProfileController extends Controller
                 ->withQueryString(),
             'biodata' => Biodata::latest()->where('user_id', $user->id)
                 ->get()[0],
+            'arts' => Art::latest()
+                ->where('user_id', $user->id)
+                ->paginate(10)
+                ->withQueryString(),
             'helper' => Helper::class
         ];
 
-        if($user->id != auth()->user()->id){
+        if ($user->id != auth()->user()->id) {
             $params['albums'] = Album::latest()
                 ->where('user_id', $user->id)
-                ->andWhere('privacy', 'public')
+                ->where('privacy', 'public')
                 ->paginate(10)
                 ->withQueryString();
-        }
-        else{
+        } else {
             $params['albums'] = Album::latest()
-            ->where('user_id', $user->id)
-            ->paginate(10)
-            ->withQueryString();
+                ->where('user_id', $user->id)
+                ->paginate(10)
+                ->withQueryString();
         }
 
         return view('profile.index', $params);

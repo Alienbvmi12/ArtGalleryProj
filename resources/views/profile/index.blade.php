@@ -78,38 +78,46 @@
                                 </select>
                             </div>
                             <div class="card-body row">
-                                <div class="col-sm-3">
-                                    <div class="card mb-3" style="width:100%; cursor : pointer">
-                                        <div class="card-body" style="overflow : hidden; height : 200px"
-                                            data-bs-toggle="modal" data-bs-target="#modalPost">
-                                            <div class="row" style="height : 80%">
-                                                <div class="col-sm-12 d-grid" style="place-items: center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
-                                                        fill="currentColor" class="bi bi-plus-square-dotted"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M2.5 0c-.166 0-.33.016-.487.048l.194.98A1.51 1.51 0 0 1 2.5 1h.458V0H2.5zm2.292 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zm1.833 0h-.916v1h.916V0zm1.834 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zM13.5 0h-.458v1h.458c.1 0 .199.01.293.029l.194-.981A2.51 2.51 0 0 0 13.5 0zm2.079 1.11a2.511 2.511 0 0 0-.69-.689l-.556.831c.164.11.305.251.415.415l.83-.556zM1.11.421a2.511 2.511 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415L1.11.422zM16 2.5c0-.166-.016-.33-.048-.487l-.98.194c.018.094.028.192.028.293v.458h1V2.5zM.048 2.013A2.51 2.51 0 0 0 0 2.5v.458h1V2.5c0-.1.01-.199.029-.293l-.981-.194zM0 3.875v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 5.708v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 7.542v.916h1v-.916H0zm15 .916h1v-.916h-1v.916zM0 9.375v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .916v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .917v.458c0 .166.016.33.048.487l.98-.194A1.51 1.51 0 0 1 1 13.5v-.458H0zm16 .458v-.458h-1v.458c0 .1-.01.199-.029.293l.981.194c.032-.158.048-.32.048-.487zM.421 14.89c.183.272.417.506.69.689l.556-.831a1.51 1.51 0 0 1-.415-.415l-.83.556zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373c.158.032.32.048.487.048h.458v-1H2.5c-.1 0-.199-.01-.293-.029l-.194.981zM13.5 16c.166 0 .33-.016.487-.048l-.194-.98A1.51 1.51 0 0 1 13.5 15h-.458v1h.458zm-9.625 0h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zm1.834-1v1h.916v-1h-.916zm1.833 1h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                                                    </svg>
+                                @if (auth()->user()->id == $user->id)
+                                    <div class="col-sm-3">
+                                        <div class="card mb-3" style="width:100%; cursor : pointer">
+                                            <div class="card-body" style="overflow : hidden; height : 200px"
+                                                data-bs-toggle="modal" data-bs-target="#modalPost">
+                                                <div class="row" style="height : 80%">
+                                                    <div class="col-sm-12 d-grid" style="place-items: center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="60"
+                                                            height="60" fill="currentColor"
+                                                            class="bi bi-plus-square-dotted" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M2.5 0c-.166 0-.33.016-.487.048l.194.98A1.51 1.51 0 0 1 2.5 1h.458V0H2.5zm2.292 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zm1.833 0h-.916v1h.916V0zm1.834 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zM13.5 0h-.458v1h.458c.1 0 .199.01.293.029l.194-.981A2.51 2.51 0 0 0 13.5 0zm2.079 1.11a2.511 2.511 0 0 0-.69-.689l-.556.831c.164.11.305.251.415.415l.83-.556zM1.11.421a2.511 2.511 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415L1.11.422zM16 2.5c0-.166-.016-.33-.048-.487l-.98.194c.018.094.028.192.028.293v.458h1V2.5zM.048 2.013A2.51 2.51 0 0 0 0 2.5v.458h1V2.5c0-.1.01-.199.029-.293l-.981-.194zM0 3.875v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 5.708v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 7.542v.916h1v-.916H0zm15 .916h1v-.916h-1v.916zM0 9.375v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .916v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .917v.458c0 .166.016.33.048.487l.98-.194A1.51 1.51 0 0 1 1 13.5v-.458H0zm16 .458v-.458h-1v.458c0 .1-.01.199-.029.293l.981.194c.032-.158.048-.32.048-.487zM.421 14.89c.183.272.417.506.69.689l.556-.831a1.51 1.51 0 0 1-.415-.415l-.83.556zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373c.158.032.32.048.487.048h.458v-1H2.5c-.1 0-.199-.01-.293-.029l-.194.981zM13.5 16c.166 0 .33-.016.487-.048l-.194-.98A1.51 1.51 0 0 1 13.5 15h-.458v1h.458zm-9.625 0h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zm1.834-1v1h.916v-1h-.916zm1.833 1h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row" style="height : 20%">
-                                                <div class="col-sm-12">
-                                                    <h5 class="card-title text-center">Create New Post</h5>
+                                                <div class="row" style="height : 20%">
+                                                    <div class="col-sm-12">
+                                                        <h5 class="card-title text-center">Create New Post</h5>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                                 @foreach ($posts as $post)
                                     <div class="col-sm-3">
                                         <div class="card mb-3" style="width:100%">
-                                            <div style="overflow : hidden; height : 200px">
+                                            <div style="overflow : hidden; height : 150px">
+                                                <?php
+                                                $img = explode('://', $post->cover_image)[0];
+                                                if (!($img == 'http' or $img == 'https')) {
+                                                    $post->cover_image = '../storage/' . $post->cover_image;
+                                                }
+                                                ?>
                                                 <img src="{{ $post->cover_image }}" style="object-fit: cover"
                                                     class="card-img-top" alt="...">
                                             </div>
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $post->title }}</h5>
-                                                <p class="card-text" style="height : 100px; overflow : hidden">
+                                                <p class="card-text" style="height : 50px; overflow : hidden">
                                                     {!! $post->excerpt !!}</p>
                                                 <a href="/post/{{ $post->slug }}" class="">Read more...</a>
                                             </div>
@@ -149,22 +157,53 @@
                         }?>
                             </div>
                         @elseif(request('section') == 'arts')
-                            <label for="">Album</label>
-                            <select class="form-control mb-4" style="width : 200px" name="" id="">
-                                <option value="all">All</option>
-                                <option value="album 1">Album 1</option>
-                            </select>
-                            <div class="card-body rowa">
-                                <?php 
-                            for($i = 0; $i < 4; $i++){
-                                echo "<div class='columna'>";
-                                for($u = 0; $u < 7; $u++){?>
-                                <img src="https://picsum.photos/{{ rand(300, 1000) }}/{{ rand(300, 1000) }}?nocache{{ microtime() }}"
-                                    style="width : 100%">
-                                <?php
-                                } 
-                                echo "</div>";
-                            }?>
+    
+                            <div class="container my-3">
+                                <label for="">Album</label>
+                                <select class="form-control mb-4" style="width : 200px" name="" id="">
+                                    <option value="all">All</option>
+                                    @foreach ($albums as $album)
+                                        <option value="{{ $album->id }}">{{ $album->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="card-body row">
+                                @if (auth()->user()->id == $user->id)
+                                <div class="col-sm-12">
+                                    <div class="card mb-3" style="width:100%; cursor : pointer">
+                                        <div class="card-body" style="overflow : hidden; height : 200px; width : 100%"
+                                            data-bs-toggle="modal" data-bs-target="#modalArt">
+                                            <div class="row" style="height : 80%">
+                                                <div class="col-sm-12 d-grid" style="place-items: center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
+                                                        fill="currentColor" class="bi bi-plus-square-dotted"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M2.5 0c-.166 0-.33.016-.487.048l.194.98A1.51 1.51 0 0 1 2.5 1h.458V0H2.5zm2.292 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zm1.833 0h-.916v1h.916V0zm1.834 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zM13.5 0h-.458v1h.458c.1 0 .199.01.293.029l.194-.981A2.51 2.51 0 0 0 13.5 0zm2.079 1.11a2.511 2.511 0 0 0-.69-.689l-.556.831c.164.11.305.251.415.415l.83-.556zM1.11.421a2.511 2.511 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415L1.11.422zM16 2.5c0-.166-.016-.33-.048-.487l-.98.194c.018.094.028.192.028.293v.458h1V2.5zM.048 2.013A2.51 2.51 0 0 0 0 2.5v.458h1V2.5c0-.1.01-.199.029-.293l-.981-.194zM0 3.875v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 5.708v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 7.542v.916h1v-.916H0zm15 .916h1v-.916h-1v.916zM0 9.375v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .916v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .917v.458c0 .166.016.33.048.487l.98-.194A1.51 1.51 0 0 1 1 13.5v-.458H0zm16 .458v-.458h-1v.458c0 .1-.01.199-.029.293l.981.194c.032-.158.048-.32.048-.487zM.421 14.89c.183.272.417.506.69.689l.556-.831a1.51 1.51 0 0 1-.415-.415l-.83.556zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373c.158.032.32.048.487.048h.458v-1H2.5c-.1 0-.199-.01-.293-.029l-.194.981zM13.5 16c.166 0 .33-.016.487-.048l-.194-.98A1.51 1.51 0 0 1 13.5 15h-.458v1h.458zm-9.625 0h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zm1.834-1v1h.916v-1h-.916zm1.833 1h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="height : 20%">
+                                                <div class="col-sm-12">
+                                                    <h5 class="card-title text-center">Create New Image Art</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                <div class="card-body rowi">
+                                    <?php 
+                                    $artLength = count($arts);
+                                    $cnt = 0;
+                                    for($i = 0; $i < $artLength; $i++){
+                                        echo "<div class='columni'>";
+                                        ?>
+                                        <img src="../storage/{{ $arts[$i]->content_url }}">
+                                    <?php
+                                        echo "</div>";
+                                    }?>
+                                </div>
                             </div>
                         @else
                             <div class="card-body row">
@@ -292,37 +331,6 @@
             </div>
         </div>
         <div class="profile-foot">
-            <footer class="footer bg-light">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="col-lg-6 h-100 text-center text-lg-start">
-                            <ul class="list-inline mb-3 mt-1">
-                                <li class="list-inline-item"><a href="#!">About</a></li>
-                                <li class="list-inline-item">⋅</li>
-                                <li class="list-inline-item"><a href="#!">Contact</a></li>
-                                <li class="list-inline-item">⋅</li>
-                                <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                                <li class="list-inline-item">⋅</li>
-                                <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                            </ul>
-                            <p class="text-muted small mb-4">&copy; Your Website 2023. All Rights Reserved.</p>
-                        </div>
-                        <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item me-4">
-                                    <a href="#!" class="text-primary"><i class="bi-facebook fs-3"></i></a>
-                                </li>
-                                <li class="list-inline-item me-4">
-                                    <a href="#!" class="text-info"><i class="bi-twitter fs-3"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!" class="text-danger"><i class="bi-instagram fs-3"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 
@@ -409,8 +417,8 @@
                                     <label for="exampleFormControlInput1" class="form-label">Region</label>
                                     <select name="country" name="country" class="form-control">
                                         <option disabled selected hidden>Select your country</option>
-                                        @foreach($helper::$countries as $country)
-                                            <option value="{{$country}}">{{$country}}</option>
+                                        @foreach ($helper::$countries as $country)
+                                            <option value="{{ $country }}">{{ $country }}</option>
                                         @endforeach
                                         <!-- Add more options as needed -->
                                     </select>
@@ -455,6 +463,8 @@
             </div>
         </div>
 
+        <!--Modal Post-->
+
         <div class="modal fade" id="modalPost" tabindex="-1" aria-labelledby="modalPostLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -480,8 +490,8 @@
                                         <label for="exampleFormControlInput1" class="form-label">Albums</label>
                                         <select class="form-control" name="album_id" id="">
                                             <option disabled selected hidden>Select Album</option>
-                                            @foreach($albums as $album)
-                                                <option value="{{$album->id}}">{{$album->title}}</option>
+                                            @foreach ($albums as $album)
+                                                <option value="{{ $album->id }}">{{ $album->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -493,6 +503,59 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Body</label>
                                 <textarea id="winternote" name="body" required>
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Art-->
+
+        <div class="modal fade" id="modalArt" tabindex="-1" aria-labelledby="modalArtLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalArtLabel">New Art</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="/art" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            @csrf
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="hidden" name="type" value="image">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Image</label>
+                                        <input class="form-control" type="file" id="content" name="content"
+                                            accept="image/*">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                        <input type="text" class="form-control" name="title" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Albums</label>
+                                        <select class="form-control" name="album_id" id="">
+                                            <option disabled selected hidden>Select Album</option>
+                                            @foreach ($albums as $album)
+                                                <option value="{{ $album->id }}">{{ $album->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img id="previewImageArt" style="max-width: 300px;" />
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Descriptions</label>
+                                <textarea id="autumnote" name="descriptions" required>
                                 </textarea>
                             </div>
                         </div>
@@ -537,7 +600,22 @@
             ]
         });
 
-        function previewImage(event) {
+        $('#autumnote').summernote({
+            placeholder: 'Type something',
+            tabsize: 2,
+            height: 310,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear', 'font']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'video']],
+                ['view', ['help']]
+            ]
+        });
+
+        function previewImage(event, id) {
             var input = event.target;
 
             if (input.files && input.files[0]) {
@@ -545,7 +623,9 @@
 
                 reader.onload = function(e) {
                     var previewElement = document.getElementById('previewImage');
+                    var previewElement2 = document.getElementById('previewImageArt');
                     previewElement.src = e.target.result;
+                    previewElement2.src = e.target.result;
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -553,6 +633,8 @@
         }
 
         var uploadInput = document.getElementById('cover_image');
+        uploadInput.addEventListener('change', previewImage);
+        var uploadInput = document.getElementById('content');
         uploadInput.addEventListener('change', previewImage);
     </script>
 
