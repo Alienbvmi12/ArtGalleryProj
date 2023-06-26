@@ -63,4 +63,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Biodata::class);
     }
 
+    public function likes(){
+        return $this->hasMany(Post_likeComment::class);
+    }
+
 }

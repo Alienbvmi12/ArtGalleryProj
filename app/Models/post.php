@@ -27,4 +27,8 @@ class Post extends Model
     public function album(){
         return $this->belongsTo(Album::class, 'album_id');
     }
+
+    public function like(){
+        return $this->hasMany(Post_likeComment::class);
+    }
 }

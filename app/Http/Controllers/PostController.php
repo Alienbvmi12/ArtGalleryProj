@@ -6,24 +6,22 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Post_likeComment;
 
 class PostController extends Controller
 {
-    public function all(){
-        return view('post.posts', [
-            'title' => 'All Post',
-            'active' => 'blogposts',
-            'posts' => Post::latest()
-                            ->paginate(10)
-                            ->withQueryString(),
-        ]);
-    }
-
-    public function find(Post $post){
-        return view('post', [
-            'title' => 'Post by '.$post->author->name,
-            'active' => 'blog',
-            'post' => $post
-        ]);
+    public function like($id)
+    {
+        $count = Post_likeComment::where('post_id', $id)->where('user_id', auth()->user()->id)->get();
+        if (count($count) > 0) {
+            Post_likeComment::where('post_id', $id)->where('user_id', auth()->user()->id)->delete();
+            return 'deleted';
+        } else {
+            Post_likeComment::create([
+                'post_id' => $id,
+                'user_id' => auth()->user()->id
+            ]);
+            return 'liked';
+        }
     }
 }

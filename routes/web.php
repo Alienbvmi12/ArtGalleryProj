@@ -89,6 +89,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/profile/{user:username}', [UserProfileController::class, 'show']);
     Route::put('/profile/{biodata}', [UserProfileController::class, 'update']);
+
+    Route::get('/like/{id}', [PostController::class, 'like']);
 });
 
 //Konfirmasi email

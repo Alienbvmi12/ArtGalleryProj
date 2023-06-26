@@ -176,11 +176,20 @@
                         <div class="col-sm-6">
                             <div class="card mb-3" style="width:100%">
                                 <div style="overflow : hidden; height : 200px">
-                                    <img src="{{ $post->cover_image }}" style="object-fit: cover" class="card-img-top" alt="...">
+                                    <?php
+                                    $img = explode('://', $post->cover_image)[0];
+                                    if (!($img == 'http' or $img == 'https')) {
+                                        $post->cover_image = '../storage/' . $post->cover_image;
+                                    }
+                                    ?>
+                                    <img src="{{ $post->cover_image }}" style="object-fit: cover" class="card-img-top"
+                                        alt="...">
                                 </div>
                                 <div class="card-body">
+                                    <text onclick="like({{ $post->id }}, this, 'post{{$post->id}}')" class="bi bi-heart-fill @foreach($post->like as $like) @if($like->user_id === auth()->user()->id) text-danger @endif @endforeach mb-3" style="font-size : 20px; cursor : pointer"> <label id="post{{$post->id}}">{{count($post->like)}}</label></text>
                                     <h5 class="card-title">{{ $post->title }}</h5>
-                                    <p class="card-text" style="height : 100px; overflow : hidden">{!! $post->excerpt !!}</p>
+                                    <p class="card-text" style="height : 100px; overflow : hidden">{!! $post->excerpt !!}
+                                    </p>
                                     <a href="/post/{{ $post->slug }}" class="">Read more...</a>
                                 </div>
                             </div>
@@ -199,4 +208,6 @@
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
     </script>
+
+    
 @endsection

@@ -12,4 +12,17 @@ class Post_likeComment extends Model
     protected $guarded = [
         'id'
     ];
+
+    protected $with = [
+        'user',
+        'post'
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function post(){
+        return $this->belongsTo(Post::class, 'post_id');
+    }
 }

@@ -26,7 +26,8 @@
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
     <!-- include summernote css/js -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
@@ -373,13 +374,17 @@
                 <div class="row p-5">
                     <div class="col-lg-6 h-100 text-center text-lg-start">
                         <ul class="list-inline mb-3 mt-1">
-                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">About</a></li>
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">About</a>
+                            </li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Contact</a></li>
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Contact</a>
+                            </li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Terms of Use</a></li>
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Terms of
+                                    Use</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="#!" style="text-decoration : none">Privacy
+                                    Policy</a></li>
                         </ul>
                         <p class="text-muted small mb-4">&copy; Your Website 2023. All Rights Reserved.</p>
                     </div>
@@ -413,6 +418,29 @@
     }
 
     document.getElementById("followed_button").click();
+
+    function like(postId, context, count) {
+        const likeCount = Number(document.getElementById(count).innerHTML);
+        $.ajax({
+            url: '/like/' + postId,
+            type: 'GET',
+            dataType: 'html',
+            success: function(response) {
+                if (response == 'liked') {
+                    context.classList.add(
+                        'text-danger'); 
+                        document.getElementById(count).innerHTML = likeCount + 1;
+                } else {
+                    context.classList.remove(
+                        'text-danger');
+                        document.getElementById(count).innerHTML = likeCount - 1;
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(error);
+            }
+        });
+    }
 </script>
 
 </html>

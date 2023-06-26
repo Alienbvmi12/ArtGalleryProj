@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Album;
 use App\Helper\Helper;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
@@ -65,6 +66,10 @@ class PostResourceController extends Controller
         return view('post.detail', [
             'post' => $post,
             'title' => 'Post by ' . $post->author->username,
+            'albums' => Album::latest()
+            ->where('user_id', auth()->user()->id)
+            ->paginate(10)
+            ->withQueryString()
         ]);
     }
 
@@ -81,7 +86,35 @@ class PostResourceController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:254',
+            'album_id' => 'required',
+            'body' => 'required'
+        ]);
+
+        if ($post->title === $validatedData['title']) {
+            $validatedData['slug'] = $post->slug;
+        } else {
+            $validatedData['slug'] = Helper::generateSlug($validatedData['title']);
+        }
+
+        $validatedData['excerpt'] = Helper::generateExcerpt($validatedData['body'], 50);
+
+        if (!$request->hasFile('cover_image')) {
+            $imgPath = $post->cover_image;
+        } else {
+            if (Storage::disk('public')->exists($post->cover_image)) {
+                Storage::disk('public')->delete($post->cover_image);
+            }
+            $imgPath = $request->file('cover_image')->store('post-covers');
+        }
+
+        $validatedData['cover_image'] = $imgPath;
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Post::where('id', $post->id)->update($validatedData);
+
+        return redirect('/profile/' . auth()->user()->username . '?section=posts');
     }
 
     /**
@@ -90,9 +123,9 @@ class PostResourceController extends Controller
     public function destroy(Post $post)
     {
         $deletedPost = Post::where('id', $post->id)->delete();
-        return redirect('/profile/' . auth()->user()->username . '?section=posts');
-        if (File::exists('app/public/'.$deletedPost->cover_image)) {
-            Storage::delete('app/public/'.$deletedPost->cover_image);
+        if (Storage::disk('public')->exists($post->cover_image)) {
+            Storage::disk('public')->delete($post->cover_image);
         }
+        return redirect('/profile/' . auth()->user()->username . '?section=posts');
     }
 }

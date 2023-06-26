@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('post_id');
             $table->foreignId('user_id');
-            $table->text('comment')->nullable();
-            $table->string('type');
             $table->timestamps();
         });
     }
