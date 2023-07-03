@@ -36,6 +36,11 @@
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
+    <!--Vanilla grid-->
+
+    <link rel="stylesheet" href="{{url('/')}}/vendor/photo-grid-box-vanilla-master/dist/css/photo-grid-box-vanilla.min.css" />
+    <script src="{{url('/')}}/vendor/photo-grid-box-vanilla-master/dist/photo-grid-box-vanilla.min.js"></script>
+
     <style>
         * {
             font-family: 'Montserrat', sans-serif;
@@ -205,15 +210,15 @@
 
         /* Create four equal columns that sits next to each other */
         .columna {
-            flex: 25%;
-            max-width: 25%;
+            flex: 100%;
+            width: 100%;
             padding: 0 4px;
         }
 
         .columna img {
             margin-top: 8px;
             vertical-align: middle;
-            width: 100%;
+            height: 200px;
         }
 
         .rowi {
@@ -428,12 +433,12 @@
             success: function(response) {
                 if (response == 'liked') {
                     context.classList.add(
-                        'text-danger'); 
-                        document.getElementById(count).innerHTML = likeCount + 1;
+                        'text-danger');
+                    document.getElementById(count).innerHTML = likeCount + 1;
                 } else {
                     context.classList.remove(
                         'text-danger');
-                        document.getElementById(count).innerHTML = likeCount - 1;
+                    document.getElementById(count).innerHTML = likeCount - 1;
                 }
             },
             error: function(xhr, status, error) {

@@ -141,7 +141,7 @@
 
     <div class="container pt-4">
         <div class="row">
-            
+
             <!--Art Nav-->
 
             <div class="col-sm-1 d-flex pt-3 content-menu">
@@ -171,17 +171,8 @@
             <!--displayer-->
 
             <div class="card col-sm-11" id="y">
-                <div class="card-body rowa">
-                    <?php 
-                    for($i = 0; $i < 4; $i++){
-                        echo "<div class='columna'>";
-                        for($u = 0; $u < 7; $u++){?>
-                    <img src="https://picsum.photos/{{ rand(300, 1000) }}/{{ rand(300, 1000) }}?nocache{{ microtime() }}"
-                        style="width : 100%">
-                    <?php
-                        } 
-                        echo "</div>";
-                    }?>
+                <div class="card-body" id="image-wadah">
+
                 </div>
             </div>
         </div>
@@ -190,6 +181,15 @@
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+        });
+        const imgs = [
+            <?php
+                for ($u = 0; $u < 20; $u++){
+                    echo "'https://picsum.photos/". rand(300, 1000) ."/". rand(300, 1000) ."?nocache',";
+                }
+            ?>
+        ];
+        const element = document.querySelector('#image-wadah');
+        const photoGrid = new PhotoGridBox(element, imgs);
     </script>
 @endsection

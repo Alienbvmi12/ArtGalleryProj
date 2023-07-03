@@ -71,6 +71,15 @@
     </nav>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+<?php 
+                    for($i = 0; $i < 5; $i++){
+                        echo "<div class='columna'>";
+                        for($u = 0; $u < 5; $u++){?>
+                    <img src="https://picsum.photos/{{ rand(300, 1000) }}/{{ rand(300, 1000) }}?nocache{{ microtime() }}"
+                        style="width : 100%">
+                    <?php
+                        } 
+                        echo "</div>";
+                    }?>
 
 </html>

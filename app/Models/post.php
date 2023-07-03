@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Album;
+use App\Models\Comment;
+use App\Models\Post_likeComment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,5 +32,9 @@ class Post extends Model
 
     public function like(){
         return $this->hasMany(Post_likeComment::class);
+    }
+
+    public function comment(){
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

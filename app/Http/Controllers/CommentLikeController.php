@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Post_likeComment;
+use App\Http\Controllers\Controller;
+use App\Models\Comment;
 
-class PostController extends Controller
+class CommentLikeController extends Controller
 {
     public function like($id)
     {
@@ -23,5 +22,18 @@ class PostController extends Controller
             ]);
             return 'liked';
         }
+    }
+
+    public function comment($id, $type){
+        $typeClass = [
+            'post' => 'App\Models\Post',
+            'art' => 'App\Models\Art',
+        ];
+        Comment::create([
+            'body' => request('body'),
+            'commentable_id' => $id,
+            'commentable_type' => $typeClass[$type]
+        ]);
+        return back();
     }
 }

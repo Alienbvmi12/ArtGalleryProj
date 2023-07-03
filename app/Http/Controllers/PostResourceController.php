@@ -69,7 +69,8 @@ class PostResourceController extends Controller
             'albums' => Album::latest()
             ->where('user_id', auth()->user()->id)
             ->paginate(10)
-            ->withQueryString()
+            ->withQueryString(),
+            'comments' => $post->comment
         ]);
     }
 

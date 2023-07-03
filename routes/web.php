@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use App\Http\Controllers\OauthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ArtResourceController;
+use App\Http\Controllers\CommentLikeController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PostResourceController;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -53,7 +55,6 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/forgot-password', [ResetPasswordController::class, 'forgot_password_view'])->name('password.request');
     Route::post('/forgot-password', [ResetPasswordController::class, 'send_reset_token'])->name('password.email');
-
 });
 
 //Reset Password
@@ -76,21 +77,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('/art', ArtResourceController::class);
 
-    // Gambar Anime random
-
-    Route::get('/image/anime', function () {
-        $client = new Client();
-        $request = $client->get('https://kyoko.rei.my.id/api/dance.php?r=1');
-        $body = json_decode((string)$request->getBody());
-        return redirect($body->apiResult->url[0]);
-    })->name('anime');
-
     // Profile
 
     Route::get('/profile/{user:username}', [UserProfileController::class, 'show']);
     Route::put('/profile/{biodata}', [UserProfileController::class, 'update']);
 
-    Route::get('/like/{id}', [PostController::class, 'like']);
+    Route::get('/like/{id}', [CommentLikeController::class, 'like']);
+
+    Route::post('/comment/{id}/{type}', [CommentLikeController::class, 'comment'])->name("komen");
 });
 
 //Konfirmasi email
@@ -110,3 +104,17 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/violet', function () {
+    dd(Route::get('/e'));
+    return Route::class;
+})->block($lockSeconds = 10, $waitSeconds = 10); 
+
+// Gambar Anime random
+
+Route::get('/image/anime', function () {
+    $client = new Client();
+    $request = $client->get('https://kyoko.rei.my.id/api/'.request('type').'.php?r=1');
+    $body = json_decode((string)$request->getBody());
+    return redirect($body->apiResult->url[0]);
+})->name('anime');
